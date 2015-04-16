@@ -12,6 +12,10 @@ class Foobar
       new(id: id)
     end
 
+    def self.find_by_name(name)
+      new(name: name)
+    end
+
     def self.is_free_now?
       FreeBusy.is_free_now?(all)
     end
@@ -30,6 +34,7 @@ class Foobar
         raise 'FOOBAR'
       end
     end
+
     def is_free_now?
       result = FreeBusy.is_free_now?(self)
       result.detect{|room, _| self.id == room.id}.last
