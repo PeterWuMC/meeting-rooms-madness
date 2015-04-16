@@ -15,16 +15,20 @@ class Api
                                "calendar-api-quickstart.json")
   SCOPE = 'https://www.googleapis.com/auth/calendar'
 
+  def self.calendar_api
+    @@calendar_api ||= client.discovered_api('calendar', 'v3')
+  end
+
+  def self.execute(query)
+    client.execute!(query)
+  end
+
   def self.client
     @@client ||= begin
       client = Google::APIClient.new(:application_name => APPLICATION_NAME)
       client.authorization = authorize
       client
     end
-  end
-
-  def self.calendar_api
-    @@calendar_api ||= client.discovered_api('calendar', 'v3')
   end
 
   def self.authorize
@@ -46,6 +50,6 @@ class Api
     auth
   end
 
-  private_class_method :authorize
+  private_class_method :authorize, :client
 
 end

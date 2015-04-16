@@ -8,7 +8,7 @@ class Event
     page_token = nil
 
     begin
-      result = Api.client.execute!(query(room, from_time, to_time, page_token))
+      result = Api.execute(query(room, from_time, to_time, page_token))
       events += result.data.items
     end while page_token = result.data.next_page_token
 
