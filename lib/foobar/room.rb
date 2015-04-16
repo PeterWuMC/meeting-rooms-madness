@@ -41,7 +41,7 @@ class Foobar
     end
 
     def is_free_between?(from_time, to_time)
-      result = FreeBusy.is_free_now?(self, from_time, to_time)
+      result = FreeBusy.is_free_between?(self, from_time, to_time)
       result.detect{|room, _| self.id == room.id}.last
     end
 
