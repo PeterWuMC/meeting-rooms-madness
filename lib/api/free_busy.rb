@@ -35,7 +35,7 @@ class Api
 
     def map_the_calendar_name!(hash)
       hash = hash.map do |key, hash|
-        [Room[key], hash]
+        [Room.find_by_id(key), hash]
       end
       Hash[*hash.flatten]
     end

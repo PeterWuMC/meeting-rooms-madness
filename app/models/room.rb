@@ -7,16 +7,12 @@ class Room
     ALL.map{|id, name| new(id: id)}
   end
 
-  def self.[](id)
-    new(id: id)
-  end
-
   def self.find_by_name(name)
     new(name: name)
   end
 
   def self.is_free_now?
-    Foobar::FreeBusy.is_free_now?(all)
+    Api::FreeBusy.is_free_now?(all)
   end
 
   attr_reader :name, :id
@@ -30,17 +26,17 @@ class Room
     elsif @id
       @name = ALL[@id]
     else
-      raise 'FOOBAR'
+      raise 'Bad!'
     end
   end
 
   def is_free_now?
-    result = Foobar::FreeBusy.is_free_now?(self)
+    result = Api::FreeBusy.is_free_now?(self)
     result.detect{|room, _| self.id == room.id}.last
   end
 
   def is_free_between?(from_time, to_time)
-    result = Foobar::FreeBusy.is_free_between?(self, from_time, to_time)
+    result = Api::FreeBusy.is_free_between?(self, from_time, to_time)
     result.detect{|room, _| self.id == room.id}.last
   end
 
