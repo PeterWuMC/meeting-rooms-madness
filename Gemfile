@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'google-api-client'
+gem 'pry'
+gem 'awesome_print'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
