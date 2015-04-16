@@ -5,7 +5,6 @@ require 'google/api_client/auth/storage'
 require 'google/api_client/auth/storages/file_store'
 require 'fileutils'
 
-require 'foobar/room'
 require 'foobar/free_busy'
 
 class Foobar
