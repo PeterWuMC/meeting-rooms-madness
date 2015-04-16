@@ -27,7 +27,7 @@ class Foobar
       @name = opts.delete(:name)
 
       if @name
-        @id = ALL.key(value)
+        @id = ALL.key(@name)
       elsif @id
         @name = ALL[@id]
       else
