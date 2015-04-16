@@ -2,7 +2,7 @@ class Api
   class FreeBusy
 
     def self.is_free_now?(rooms)
-      is_free_between?(rooms, Time.current, 1.hour.from_now)
+      is_free_between?(rooms, Time.current, 5.minutes.from_now)
     end
 
     def self.is_free_between?(rooms, from_time, to_time)
@@ -27,7 +27,6 @@ class Api
       result = Api.client.execute!(query).data.calendars.to_hash
 
       result = Hash[*result.map {|id, busy_hash| [id, busy_hash['busy'].empty?]}.flatten]
-
       map_the_calendar_name!(result)
     end
 
