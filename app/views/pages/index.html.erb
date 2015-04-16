@@ -18,7 +18,7 @@
 
 		<ul >
 			<%- @rooms.each do |room, free|  %>
-				<li class='<%=call_square(free) %>'_square><%= room.name.capitalize %>, <%= current_event(room).try(:summary)%></li>
+				<li class='<%=call_square(free) %>'_square><%= room.name.capitalize %>, <%= current_event(room)%>, <%= current_event_end_time(room) %></li>
 			<%- end %>
 		</ul>
 
