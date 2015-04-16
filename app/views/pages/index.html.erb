@@ -16,11 +16,15 @@
 
 		<p>Here is the current state of play with the meeting rooms:</p>
 
-		<ul >
+		
 			<%- @rooms.each do |room, free|  %>
-				<li class='<%=call_square(free) %>'_square><%= room.name.capitalize %>, <%= current_event(room)%>, <%= current_event_end_time(room) %></li>
+        <p class='<%=call_square(free) %>'_square>
+          <%= room.name.capitalize %>,
+          <%= current_event(room)%>,
+          <%= current_event_end_time(room) %>
+        </p>
 			<%- end %>
-		</ul>
+		
 
 
 		<%= test_str =%>
