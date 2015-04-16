@@ -5,6 +5,8 @@
 
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #999;
+$busy: red;
+$free: green;
 
 ul#menu li {
     display:inline;
@@ -20,4 +22,16 @@ body {
 
   font: 100% $font-stack;
   color: $primary-color;
+}
+
+.busy_square {
+	width: 	100px;
+	height: 100px;
+	background: $busy;
+}
+
+.free_square {
+	width: 	100px;
+	height: 100px;
+	background: $free;
 }
