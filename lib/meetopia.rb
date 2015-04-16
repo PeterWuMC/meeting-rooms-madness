@@ -5,13 +5,13 @@ require 'google/api_client/auth/storage'
 require 'google/api_client/auth/storages/file_store'
 require 'fileutils'
 
-require_relative 'meeting-rooms-madness/free_busy'
-require_relative 'meeting-rooms-madness/rooms'
+require_relative 'meetopia/free_busy'
+require_relative 'meetopia/room'
 
-class MeetingRoomMadness
+class Meetopia
 
   APPLICATION_NAME = 'meeting-rooms-madness'
-  CLIENT_SECRETS_PATH = 'client_secret.json'
+  CLIENT_SECRETS_PATH = File.join(File.dirname(__FILE__), '..', 'config', 'client_secret.json')
   CREDENTIALS_PATH = File.join(Dir.home, '.credentials',
                                "calendar-api-quickstart.json")
   SCOPE = 'https://www.googleapis.com/auth/calendar.readonly'
