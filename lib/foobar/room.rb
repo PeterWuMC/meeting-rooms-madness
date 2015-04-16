@@ -27,7 +27,7 @@ class Foobar
       @name = opts.delete(:name)
 
       if @name
-        @id = ALL.key(@name)
+        @id = ALL.key(@name.downcase.to_s)
       elsif @id
         @name = ALL[@id]
       else
