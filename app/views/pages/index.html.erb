@@ -18,10 +18,10 @@
 
 		<ul >
 			<%- @rooms.each do |room, free|  %>
-				<li><%= room.name %>, <%= free ? 'free' : 'busy' %></li>
+				<li><span class='<%= call_status_class(free) %>'><%= room.name %></span></li>
 			<%- end %>
 		</ul>
-		
+
 		<%= test_str =%>
 
 	</body>
