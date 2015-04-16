@@ -11,6 +11,10 @@ class Room
     new(name: name)
   end
 
+  def self.find_by_id(id)
+    new(id: id)
+  end
+
   def self.is_free_now?
     Api::FreeBusy.is_free_now?(all)
   end
