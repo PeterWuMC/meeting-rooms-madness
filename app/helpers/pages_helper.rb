@@ -16,6 +16,14 @@ module PagesHelper
 		end
 	end
 
+	def call_td(room_free)
+		if room_free
+			'free_td'
+		else
+			'busy_td'
+		end
+	end
+
 	def current_event(room)
 		event = Event.all_of_today(room).detect do |event|
 					event.current?

@@ -24,6 +24,20 @@ body {
   color: $primary-color;
 }
 
+table {
+	width: 100%;
+	text-align: center;
+}
+
+.busy_td {
+background-color: $busy;
+}
+
+.free_td {
+background-color: $free;
+}
+
+
 .busy_square {
 	width: 	300px;
 	height: 300px;
