@@ -19,6 +19,10 @@ class Room
     Api::FreeBusy.is_free_now?(all)
   end
 
+  def self.current_free_rooms
+    Api::FreeBusy.is_free_now?(all).select { |_, free| free }
+  end
+
   attr_reader :name, :id
 
   def initialize(opts)
