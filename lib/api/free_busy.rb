@@ -1,29 +1,30 @@
-require 'yaml'
-
-class Foobar
+class Api
   class FreeBusy
 
     def self.is_free_now?(rooms)
-      is_free_between?(rooms, Time.now, Time.now + 3600)
+      is_free_between?(Time.current, Time.current + 1.hour)
     end
 
     def self.is_free_between?(rooms, from_time, to_time)
-      new.is_free_between?(rooms, from_time, to_time)
+      new(rooms).is_free_between?(from_time, to_time)
     end
 
-    def initialize; end
+    attr_reader :rooms
 
-    def is_free_between?(rooms, from_time, to_time)
-      rooms = Array(rooms).flatten
+    def initialize(rooms)
+      @rooms = Array(rooms).flatten
+    end
+
+    def is_free_between?(from_time, to_time)
       query = {
-        api_method: Foobar.calendar_api.freebusy.query,
+        api_method: api_method,
         body_object: {
           timeMin: from_time.utc.iso8601,
           timeMax: to_time.utc.iso8601,
           items: rooms.map{ |room| {id: room.id} }
         }
       }
-      result = Foobar.client.execute!(query).data.calendars.to_hash
+      result = Api.client.execute!(query).data.calendars.to_hash
 
       result = Hash[*result.map {|id, busy_hash| [id, busy_hash['busy'].empty?]}.flatten]
 
@@ -38,5 +39,10 @@ class Foobar
       end
       Hash[*hash.flatten]
     end
+
+    def api_method
+      Api.calendar_api.freebusy.query
+    end
+
   end
 end

@@ -5,9 +5,9 @@ require 'google/api_client/auth/storage'
 require 'google/api_client/auth/storages/file_store'
 require 'fileutils'
 
-require 'foobar/free_busy'
+require 'api/free_busy'
 
-class Foobar
+class Api
 
   APPLICATION_NAME = 'meeting-rooms-madness'
   CLIENT_SECRETS_PATH = File.join(File.dirname(__FILE__), '..', 'config', 'client_secret.json')
