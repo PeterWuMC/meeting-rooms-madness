@@ -24,7 +24,7 @@ class Api
           items: rooms.map{ |room| {id: room.id} }
         }
       }
-      result = Api.client.execute!(query).data.calendars.to_hash
+      result = Api.execute(query).data.calendars.to_hash
 
       result = Hash[*result.map {|id, busy_hash| [id, busy_hash['busy'].empty?]}.flatten]
       map_the_calendar_name!(result)
