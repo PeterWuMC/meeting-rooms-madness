@@ -4,15 +4,19 @@ class Room
   ALL = YAML.load_file(File.join(File.dirname(__FILE__), '..', '..', 'config', 'meeting_rooms.yml'))
 
   def self.all
-    ALL.map{|id, name| new(id: id)}
+    @all ||= begin
+      ALL.map do |id, attrs|
+        new(id, attrs)
+      end
+    end
   end
 
   def self.find_by_name(name)
-    new(name: name)
+    all.detect { |room| room.name == name.downcase.to_s }
   end
 
   def self.find_by_id(id)
-    new(id: id)
+    all.detect { |room| room.id == id }
   end
 
   def self.is_free_now?
@@ -25,32 +29,21 @@ class Room
 
   attr_reader :id
 
-  def initialize(opts)
-    @id   = opts.delete(:id)
-    name = opts.delete(:name)
-
-    if name
-      name = name.downcase.to_s
-      @id, @attr = ALL.detect{|_, room_attr| room_attr['name'] == name}
-    elsif @id
-      @attr = ALL[@id]
-    end
-
-    if @id.blank? || @attr.blank?
-      raise 'Bad!'
-    end
+  def initialize(id, attrs)
+    @id    = id
+    @attrs = attrs
   end
 
   def name
-    @attr['name']
+    @attrs['name']
   end
 
   def has_projector?
-    @attr['projector']
+    @attrs['projector']
   end
 
   def max_occupants
-    @attr['max_occupants']
+    @attrs['max_occupants']
   end
 
   def is_free_now?
@@ -62,7 +55,6 @@ class Room
     result = Api::FreeBusy.is_free_between?(self, from_time, to_time)
     result.detect{|room, _| self.id == room.id}.last
   end
-
 
   def inspect
     "#<Room: #name='#{name}' #id='#{id}'>"
