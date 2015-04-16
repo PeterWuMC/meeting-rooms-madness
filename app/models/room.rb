@@ -23,21 +23,34 @@ class Room
     Api::FreeBusy.is_free_now?(all).select { |_, free| free }
   end
 
-  attr_reader :name, :id
+  attr_reader :id
 
   def initialize(opts)
     @id   = opts.delete(:id)
-    @name = opts.delete(:name)
+    name = opts.delete(:name)
 
-    if @name
-      @id = ALL.key(@name.downcase.to_s)
+    if name
+      name = name.downcase.to_s
+      @id, @attr = ALL.detect{|_, room_attr| room_attr['name'] == name}
     elsif @id
-      @name = ALL[@id]
+      @attr = ALL[@id]
     end
 
-    if @id.nil? || @name.nil?
+    if @id.blank? || @attr.blank?
       raise 'Bad!'
     end
+  end
+
+  def name
+    @attr['name']
+  end
+
+  def has_projector?
+    @attr['projector']
+  end
+
+  def max_occupants
+    @attr['max_occupants']
   end
 
   def is_free_now?
@@ -50,4 +63,8 @@ class Room
     result.detect{|room, _| self.id == room.id}.last
   end
 
+
+  def inspect
+    "#<Room: #name='#{name}' #id='#{id}'>"
+  end
 end
