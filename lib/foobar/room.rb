@@ -1,6 +1,6 @@
 require 'yaml'
 
-class Meetopia
+class Foobar
   class Room
     ALL = YAML.load_file(File.join(File.dirname(__FILE__), '..', '..', 'config', 'meeting_rooms.yml'))
 

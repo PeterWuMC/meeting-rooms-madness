@@ -1,6 +1,6 @@
 require 'yaml'
 
-class Meetopia
+class Foobar
   class FreeBusy
 
     def self.is_free_now?(rooms)
@@ -16,14 +16,14 @@ class Meetopia
     def is_free_between?(rooms, from_time, to_time)
       rooms = Array(rooms).flatten
       query = {
-        api_method: Meetopia.calendar_api.freebusy.query,
+        api_method: Foobar.calendar_api.freebusy.query,
         body_object: {
           timeMin: from_time.utc.iso8601,
           timeMax: to_time.utc.iso8601,
           items: rooms.map{ |room| {id: room.id} }
         }
       }
-      result = Meetopia.client.execute!(query).data.calendars.to_hash
+      result = Foobar.client.execute!(query).data.calendars.to_hash
 
       result = Hash[*result.map {|id, busy_hash| [id, busy_hash['busy'].empty?]}.flatten]
 

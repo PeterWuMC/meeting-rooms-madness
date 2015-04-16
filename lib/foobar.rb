@@ -5,10 +5,10 @@ require 'google/api_client/auth/storage'
 require 'google/api_client/auth/storages/file_store'
 require 'fileutils'
 
-require_relative 'meetopia/free_busy'
-require_relative 'meetopia/room'
+require 'foobar/room'
+require 'foobar/free_busy'
 
-class Meetopia
+class Foobar
 
   APPLICATION_NAME = 'meeting-rooms-madness'
   CLIENT_SECRETS_PATH = File.join(File.dirname(__FILE__), '..', 'config', 'client_secret.json')
