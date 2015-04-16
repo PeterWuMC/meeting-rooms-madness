@@ -13,7 +13,7 @@ class Api
   CLIENT_SECRETS_PATH = File.join(File.dirname(__FILE__), '..', 'config', 'client_secret.json')
   CREDENTIALS_PATH = File.join(Dir.home, '.credentials',
                                "calendar-api-quickstart.json")
-  SCOPE = 'https://www.googleapis.com/auth/calendar.readonly'
+  SCOPE = 'https://www.googleapis.com/auth/calendar'
 
   def self.client
     @@client ||= begin
