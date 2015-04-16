@@ -1,0 +1,23 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #999;
+
+ul#menu li {
+    display:inline;
+}
+
+body {
+
+	background-color: #000;
+
+	h1 {
+		color:white;
+	}
+
+  font: 100% $font-stack;
+  color: $primary-color;
+}
