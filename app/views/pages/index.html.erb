@@ -16,28 +16,12 @@
 
 		<p>Here is the current state of play with the meeting rooms:</p>
 
-		<ul id="menu">
-			<li>Kingston</li>
-			<li>Elbistan</li>
-			<li>Grimsby</li>
-			<li>Cust. Exp. 1</li>
-			<li>Cust. Exp. 2</li>
-
+		<ul >
+			<%- @rooms.each do |room, free|  %>
+				<li><%= room.name %>, <%= free ? 'free' : 'busy' %></li>
+			<%- end %>
 		</ul>
-
-		<h2> or Headings </h2>
-
-		<h2>Kingston</h2>
-
-		<h2>Elbistan</h2>
-
-		<h2>Grimsby</h2>
-
-		<h2>Cust. Exp. 1</h2>
-
-		<h2>Cust. Exp. 2</h2>
-
-
+		
 		<%= test_str =%>
 
 	</body>
