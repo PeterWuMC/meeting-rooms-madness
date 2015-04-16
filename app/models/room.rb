@@ -29,7 +29,9 @@ class Room
       @id = ALL.key(@name.downcase.to_s)
     elsif @id
       @name = ALL[@id]
-    else
+    end
+
+    if @id.nil? || @name.nil?
       raise 'Bad!'
     end
   end
