@@ -1,5 +1,20 @@
-simplybusiness.co.uk_2d3638373536313837373333@resource.calendar.google.com: kingston
-simplybusiness.co.uk_2d3635333233343633383334@resource.calendar.google.com: elbistan
-simplybusiness.co.uk_3434323337353635313834@resource.calendar.google.com:   grimsby
-simplybusiness.co.uk_3534333937333831313634@resource.calendar.google.com:   customer_experience_1
-simplybusiness.co.uk_39313231313633362d333439@resource.calendar.google.com: customer_experience_1
+simplybusiness.co.uk_2d3638373536313837373333@resource.calendar.google.com:
+  name: kingston
+  projector: true
+  max_occupants: 15
+simplybusiness.co.uk_2d3635333233343633383334@resource.calendar.google.com:
+  name: elbistan
+  projector: false
+  max_occupants: 10
+simplybusiness.co.uk_3434323337353635313834@resource.calendar.google.com:
+  name: grimsby
+  projector: true
+  max_occupants: 10
+simplybusiness.co.uk_3534333937333831313634@resource.calendar.google.com:
+  name: customer_experience_1
+  projector: false
+  max_occupants: 4
+simplybusiness.co.uk_39313231313633362d333439@resource.calendar.google.com:
+  name: customer_experience_1
+  projector: false
+  max_occupants: 4

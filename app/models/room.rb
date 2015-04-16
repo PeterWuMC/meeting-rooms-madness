@@ -30,7 +30,8 @@ class Room
     @name = opts.delete(:name)
 
     if @name
-      @id = ALL.key(@name.downcase.to_s)
+      @name = @name.downcase.to_s
+      @id = ALL.detect{|_, room_attr| room_attr['name'] == @name}
     elsif @id
       @name = ALL[@id]
     end
