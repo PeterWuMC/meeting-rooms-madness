@@ -55,6 +55,6 @@ class Event
   end
 
   def inspect
-    "#<Event: location='#{location}' summary='#{summary}' status='#{status}' start_time='#{start_time}' end_time='#{end_time}"
+    "#<Event: #location='#{location}' #summary='#{summary}' #status='#{status}' #start_time='#{start_time}' #end_time='#{end_time}>"
   end
 end
