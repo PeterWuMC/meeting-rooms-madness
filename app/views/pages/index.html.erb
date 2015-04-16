@@ -18,9 +18,10 @@
 
 		<ul >
 			<%- @rooms.each do |room, free|  %>
-				<li><span class='<%= call_status_class(free) %>'><%= room.name %></span></li>
+				<li class='<%=call_square(free) %>'_square><%= room.name.capitalize %></li>
 			<%- end %>
 		</ul>
+
 
 		<%= test_str =%>
 
