@@ -16,4 +16,10 @@ module PagesHelper
 		end
 	end
 
+	def current_event(room)
+		Event.all_of_today(room).detect do |event|
+			event.current?
+		end
+	end
+
 end
