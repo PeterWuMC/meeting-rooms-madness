@@ -50,6 +50,10 @@ class Event
     DateTime.parse(@raw_event_hash['end'].values.first)
   end
 
+  def current?
+    Time.current >= start_time && Time.current < end_time
+  end
+
   def inspect
     "#<Event: location='#{location}' summary='#{summary}' status='#{status}' start_time='#{start_time}' end_time='#{end_time}"
   end
