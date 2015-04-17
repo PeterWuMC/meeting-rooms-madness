@@ -35,38 +35,10 @@ class Api
 
       end_time = Time.zone.local(date.year, date.month, date.day, 17)
       result = execute_for(start_time, end_time)
+
       result = result.map do |id, hash|
         busy_hashes = hash['busy'].sort_by{|busy_slot| Time.zone.parse(busy_slot['start'])}
-
-        free_hashes = []
-
-        last_end_time = start_time
-
-        busy_hashes.each do |busy_hash|
-          current_busy_start_time = Time.zone.parse(busy_hash['start'])
-          current_busy_end_time   = Time.zone.parse(busy_hash['end'])
-
-          if current_busy_start_time > last_end_time
-            free_hash            = {}
-            free_hash[:start]    = last_end_time
-            free_hash[:end]      = current_busy_start_time
-            free_hash[:duration] = current_busy_start_time - last_end_time
-            binding.pry if free_hash.nil?
-            free_hashes << free_hash
-          end
-
-          last_end_time = current_busy_end_time
-        end
-
-        if end_time > last_end_time
-          free_hash            = {}
-          free_hash[:start]    = last_end_time
-          free_hash[:end]      = end_time
-          free_hash[:duration] = end_time - last_end_time
-          free_hashes << free_hash
-        end
-
-        [id, free_hashes]
+        [id, convert_busy_to_free(hashes, start_time, end_time)]
       end
 
       result = result.reject{|_, free_hashes| free_hashes.empty?}
@@ -94,6 +66,37 @@ class Api
           items: rooms.map{ |room| {id: room.id} }
         }
       }
+    end
+
+    def convert_busy_to_free(hashes, start_time, end_time)
+      free_hashes = []
+      last_end_time = start_time
+
+      hashes.each do |busy_hash|
+        current_busy_start_time = Time.zone.parse(busy_hash['start'])
+        current_busy_end_time   = Time.zone.parse(busy_hash['end'])
+
+        if current_busy_start_time > last_end_time
+          free_hash            = {}
+          free_hash[:start]    = last_end_time
+          free_hash[:end]      = current_busy_start_time
+          free_hash[:duration] = current_busy_start_time - last_end_time
+          binding.pry if free_hash.nil?
+          free_hashes << free_hash
+        end
+
+        last_end_time = current_busy_end_time
+      end
+
+      if end_time > last_end_time
+        free_hash            = {}
+        free_hash[:start]    = last_end_time
+        free_hash[:end]      = end_time
+        free_hash[:duration] = end_time - last_end_time
+        free_hashes << free_hash
+      end
+
+      free_hashes
     end
 
   end
