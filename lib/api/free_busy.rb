@@ -2,7 +2,7 @@ class Api
   class FreeBusy
 
     def self.is_free_now?(rooms)
-      is_free_between?(rooms, Time.current, 5.minutes.from_now)
+      is_free_between?(rooms, Time.current, Event::CURRENT.from_now)
     end
 
     def self.is_free_between?(rooms, from_time, to_time)

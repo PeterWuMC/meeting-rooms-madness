@@ -1,4 +1,6 @@
 class Event
+  CURRENT = 5.minutes
+
   def self.all_of_today(room)
     all_between(room, Time.current, Time.current.end_of_day)
   end
@@ -71,7 +73,7 @@ class Event
   end
 
   def current?
-    Time.current >= start_time && Time.current < end_time
+    Time.current >= start_time - CURRENT && Time.current < end_time
   end
 
   def inspect
