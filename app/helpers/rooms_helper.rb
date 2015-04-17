@@ -58,6 +58,7 @@ module RoomsHelper
     [
       ['30 minutes', 30.minutes],
       ['1 hour',     1.hour],
+      ['2 hours',    2.hour],
     ]
   end
 
