@@ -22,6 +22,10 @@
     <%= form_tag(find_rooms_path, method: :post) do -%>
     <%= select_tag "date", options_for_select(find_room_dates_array(5)) %>
     <%= select_tag "duration", options_for_select(find_room_duration_array) %>
+    <%= label_tag do %>
+      <%= check_box_tag :projector %>
+      projector?
+    <% end %>
     <%= submit_tag 'find' %>
   <% end -%>
 
