@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     from_time = Time.parse(params[:from_time])
     to_time   = from_time + duration
 
-    flash[:notice] = "Event is created for #{room.name.humanize} room"
+    flash[:notice] = "We have booked #{room.name.humanize} for you until #{from_time}"
     redirect_to rooms_path
   end
 
