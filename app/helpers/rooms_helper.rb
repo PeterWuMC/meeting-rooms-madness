@@ -34,7 +34,7 @@ module RoomsHelper
     if end_time > Time.new(Time.current.year, Time.current.month, Time.current.day, 17, 0, 0, '+00:00')
       'end of the day'
     else
-      event.end_time.strftime('%H:%M')
+      l(event.end_time, format: :time_only)
     end
   end
 
