@@ -8,7 +8,8 @@ $busy: #9A3334;
 $free: #217C7E;
 
 html, body {
-	height:100%;
+  margin: 10px;
+  height: 100%;
 }
 
 ul#menu li {
@@ -24,27 +25,27 @@ a:hover {
 }
 
 body {
-	background-color: #535353;
+  background-color: #535353;
 
-	h1 {
-		color:white;
-	}
+  h1 {
+    color:white;
+  }
 
   font: 100% $font-stack;
   color: $primary-color;
 }
 
 table {
-	width: 100%;
-	text-align: center;
+  width: 100%;
+  text-align: center;
   table-layout: fixed;
   width: 100%;
   height: 90%;
 }
 
 .find {
-	height:10%;
-	text-align: left;
+  height:10%;
+  text-align: left;
 }
 
 .busy_td {
