@@ -1,0 +1,76 @@
+.container.floor-plan
+.row
+  .col-md-12.col-xs-12.col-sm-12.col-md-12.col-lg-12 Reception area
+.row
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_1}
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_2}
+.row
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6= render partial: 'rooms/partials/room_cell', locals: {name: :kingston}
+.row
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6= render partial: 'rooms/partials/room_cell', locals: {name: :elbistan}
+.row
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6= render partial: 'rooms/partials/room_cell', locals: {name: :grimsby}
+.row
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6
+  .col-md-6.col-xs-6.col-sm-6.col-md-6.col-lg-6= render partial: 'rooms/partials/room_cell', locals: {name: :test_room}
+
+
+
+/ <table class='floor_plan'>
+
+
+/   <tr>
+/     <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_1} %>
+
+/     <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_2} %>
+
+
+/     <td></td>
+/     <td></td>
+/     <td> Sarah G's seat</td>
+/   </tr>
+
+
+
+
+/   <tr>
+/     <td class='tall', colspan=2></td>
+/     <%= render partial: 'rooms/partials/room_cell', locals: {name: :kingston} %>
+/   </tr>
+
+
+/   <tr>
+/     <td class='tall', colspan=2></td>
+/     <%= render partial: 'rooms/partials/room_cell', locals: {name: :elbistan} %>
+/   </tr>
+
+/   <tr>
+/     <td class='tall', colspan=2></td>
+/     <%= render partial: 'rooms/partials/room_cell', locals: {name: :grimsby} %>
+/   </tr>
+
+
+/ </table>
+
+/ <table>
+/   <tr>
+/     <%= render partial: 'rooms/partials/room_cell', locals: {name: :test_room} %>
+/   </tr>
+/   <tr>
+/     <td>
+/       Meetopia<br>
+/       V 0.1
+/     </td>
+/   </tr>
+/ </table>
+
+
+%p
+  find me a room:
+  = form_tag(find_rooms_path, method: :post) do
+    = select_tag "date", options_for_select(find_room_dates_array(5))
+    = select_tag "duration", options_for_select(find_room_duration_array)
+    = submit_tag 'find'

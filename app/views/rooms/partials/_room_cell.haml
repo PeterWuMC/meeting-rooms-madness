@@ -1,0 +1,27 @@
+- room, room_is_free = find_room(name)
+.cell{class: cell_class(room_is_free)}
+  %strong= room.name.to_s.humanize
+  - unless room_is_free
+    = current_event_summary(room)
+    = "until #{current_event_end_time(room)}"
+  - else
+    Free
+    %span
+      Book room for the next:
+      = link_to '30 minutes', room_events_path(room.name, duration: 30.minutes, plan: 'adhoc'), :method=> :post
+      |
+      = link_to '1 hour', room_events_path(room.name, duration: 1.hour, plan: 'adhoc'), :method=> :post
+
+  / <td class='<%= call_td(room_is_free) %>'>
+  /   <strong><%= room.name.to_s.humanize %></strong><br>
+  /   <% unless room_is_free %>
+  /     <%= current_event_summary(room) %><br>
+  /     until <%= current_event_end_time(room) %>
+  /   <% else %>
+  /     Free<br>
+  /     Book room for the next:
+  /     <%= link_to '30 minutes', room_events_path(room.name, duration: 30.minutes, plan: 'adhoc'), :method=> :post %>
+  /     |
+  /     <%= link_to '1 hour', room_events_path(room.name, duration: 1.hour, plan: 'adhoc'), :method=> :post %>
+  /   <% end %>
+  / </td>

@@ -8,6 +8,20 @@ $primary-color: #F2F2F2;
 $busy: #DC0030;
 $free: #3C9B09;
 
+
+.cell {
+  padding-bottom: 50px;
+  padding-top:    50px;
+}
+
+.busy {
+  background-color: #E06565;
+}
+
+.free {
+  background-color: #65E07E;
+}
+
 html, body {
 	height:100%;
 }
@@ -21,7 +35,7 @@ body {
 	background-color: #535353;
 
 	h1 {
-		color:white;
+		color:black;
 	}
 
   font: 100% $font-stack;

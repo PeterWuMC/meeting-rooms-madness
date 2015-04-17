@@ -4,11 +4,11 @@ module RoomsHelper
     @rooms.detect { |room, _| room.name == name.to_s.downcase }
   end
 
-  def call_td(room_free)
+  def cell_class(room_free)
     if room_free
-      'free_td'
+      'free'
     else
-      'busy_td'
+      'busy'
     end
   end
 
