@@ -1,6 +1,5 @@
 <br>
 
-<h1>Reception Area</h1>
 
 <table>
 
@@ -10,13 +9,11 @@
 
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_2} %>
 
-    
-    <td></td>
-    <td></td>
-    <td> Sarah G's seat</td>
+    <td>
+        <h3 align="center">Meetopia</h><br>
+        The Meeting Room Tool.
+        </td>
   </tr>
-
-
 
 
   <tr>
@@ -26,19 +23,29 @@
 
 
   <tr>
-    <td class='tall', colspan=2></td>
+    <td class='tall', colspan=2>
+    Find me a room:<br>
+    <%= form_tag(find_rooms_path, method: :post) do -%>
+    <%= select_tag "date", options_for_select(find_room_dates_array(5)) %>
+    <%= select_tag "duration", options_for_select(find_room_duration_array) %>
+    <%= submit_tag 'find' %>
+  <% end -%>
+
+    </td>
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :elbistan} %>
   </tr>
 
   <tr>
-    <td class='tall', colspan=2></td>
+    <td class='tall', colspan=2>
+    Rooms are layed out in the same way the look in the floorplan.
+    </td>
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :grimsby} %>
   </tr>
 
 
 </table>
 
-<table>
+<!-- <table>
   <tr>
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :test_room} %>
   </tr>
@@ -58,4 +65,4 @@
     <%= select_tag "duration", options_for_select(find_room_duration_array) %>
     <%= submit_tag 'find' %>
   <% end -%>
-</p>
+  </p> -->
