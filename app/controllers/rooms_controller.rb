@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
   end
 
   def find
-    @rooms = AvailableRoomService.find_next_available_room_for(params[:date].to_date, params[:duration].to_i)
+    projector_required = params[:projector].present?
+    @rooms = AvailableRoomService.find_next_available_room_for(params[:date].to_date, params[:duration].to_i, projector_required)
   end
 end

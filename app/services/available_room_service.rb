@@ -8,7 +8,7 @@ class AvailableRoomService
     new(from_time, to_time, projector: true).find
   end
 
-  def self.find_next_available_room_for(date, duration)
+  def self.find_next_available_room_for(date, duration, projector_required)
     rooms = Api::FreeBusy.all_free_slots(Room.all, date)
 
     rooms = rooms.select do |room_id, free_hashes|
@@ -22,6 +22,12 @@ class AvailableRoomService
       end_time   = start_time + duration
 
       [room, {start: start_time, end: end_time}]
+    end
+
+    if projector_required
+      rooms.select {|room, _| room.has_projector?}
+    else
+      rooms
     end
   end
 
