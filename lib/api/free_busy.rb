@@ -36,7 +36,7 @@ class Api
       end_time = Time.zone.local(date.year, date.month, date.day, 17)
       result = execute_for(start_time, end_time)
       result = result.map do |id, hash|
-        busy_hashes = hash['busy'].sort_by{|busy_slot| DateTime.parse(busy_slot['start'])}
+        busy_hashes = hash['busy'].sort_by{|busy_slot| Time.zone.parse(busy_slot['start'])}
 
         free_hashes = []
 

@@ -59,8 +59,9 @@
 
 
 <p>
-  find me a room:
+  Find a room (up to 5 days in the future)
   <%= form_tag(find_rooms_path, method: :post) do -%>
+    Select a day:  Duration:<br>
     <%= select_tag "date", options_for_select(find_room_dates_array(5)) %>
     <%= select_tag "duration", options_for_select(find_room_duration_array) %>
     <%= submit_tag 'find' %>
