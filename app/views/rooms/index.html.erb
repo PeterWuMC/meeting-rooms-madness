@@ -1,9 +1,5 @@
 <br>
-
-
 <table>
-
-
   <tr>
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_1} %>
 
@@ -14,7 +10,6 @@
         The Meeting Room Tool.
         </td>
   </tr>
-
 
   <tr>
     <td class='tall', colspan=2></td>
@@ -41,29 +36,4 @@
     </td>
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :grimsby} %>
   </tr>
-
-
 </table>
-
-<!-- <table>
-  <tr>
-    <%= render partial: 'rooms/partials/room_cell', locals: {name: :test_room} %>
-  </tr>
-  <tr>
-    <td>
-      Meetopia<br>
-      V 0.1
-    </td>
-  </tr>
-</table>
-
-
-<p>
-  Find a room (up to 5 days in the future)
-  <%= form_tag(find_rooms_path, method: :post) do -%>
-    Select a day:  Duration:<br>
-    <%= select_tag "date", options_for_select(find_room_dates_array(5)) %>
-    <%= select_tag "duration", options_for_select(find_room_duration_array) %>
-    <%= submit_tag 'find' %>
-  <% end -%>
-  </p> -->

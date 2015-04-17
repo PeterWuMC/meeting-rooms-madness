@@ -27,10 +27,6 @@ class Room
     Api::FreeBusy.is_free_now?(all).select { |_, free| free }.keys
   end
 
-  def self.free_rooms_between(from_time, to_time)
-    Api::FreeBusy.is_free_between?(all, from_time, to_time).select { |_, free| free }.keys
-  end
-
   attr_reader :id
 
   def initialize(id, attrs)

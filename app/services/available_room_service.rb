@@ -1,43 +1,45 @@
 class AvailableRoomService
+  def self.find_next_available_room_for(date, duration, projector_required)
+    instance = new(date, duration)
 
-  def self.find_room_between(from_time, to_time)
-    new(from_time, to_time).find
-  end
-
-  def self.find_room_with_projector_between(from_time, to_time)
-    new(from_time, to_time, projector: true).find
-  end
-
-  def self.find_next_available_room_for(date, duration)
-    rooms = Api::FreeBusy.all_free_slots(Room.all, date)
-
-    rooms = rooms.select do |room_id, free_hashes|
-      free_hashes.any?{|free_hash| free_hash[:duration] >= duration}
+    if projector_required
+      instance.find_next_available_room_with_projector
+    else
+      instance.find_next_available_room
     end
+  end
 
-    rooms = rooms.map do |room_id, free_hashes|
+  def initialize(date, duration)
+    @date     = date
+    @duration = duration
+  end
+
+  def find_next_available_room
+    eligible_rooms.map do |room_id, free_hashes|
       room = Room.find_by_id(room_id)
-      eligible_slot = free_hashes.detect{|free_hash| free_hash[:duration] >= duration}
-      start_time = eligible_slot[:start]
-      end_time   = start_time + duration
 
-      [room, {start: start_time, end: end_time}]
+      [room, first_available_slot_for(room, free_hashes)]
     end
   end
 
-  def initialize(from_time, to_time, additional_requirements={})
-    @from_time = from_time
-    @to_time   = to_time
-    @projector = additional_requirements[:projector]
+  def find_next_available_room_with_projector
+    find_next_available_room.select {|room, _| room.has_projector?}
   end
 
-  def find
-    rooms = Room.free_rooms_between(@from_time, @to_time)
-    if @projector
-      rooms.select! {|room| room.has_projector? }
+  private
+
+  def eligible_rooms
+    Api::FreeBusy.all_free_slots(Room.all, @date).select do |room_id, free_hashes|
+      free_hashes.any?{|free_hash| free_hash[:duration] >= @duration}
     end
-
-    rooms
   end
 
+  def first_available_slot_for(room, free_hashes)
+    first_eligible_slot = free_hashes.detect{|free_hash| free_hash[:duration] >= @duration}
+
+    {
+      start: first_eligible_slot[:start],
+        end: first_eligible_slot[:start] + @duration
+    }
+  end
 end
