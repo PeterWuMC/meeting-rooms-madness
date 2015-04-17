@@ -1,4 +1,4 @@
-module PagesHelper
+module RoomsHelper
 
 	def call_status_class(room_free)
 		if room_free
@@ -35,7 +35,7 @@ module PagesHelper
 			event.creator['email']
 		else
 			event.summary
-				
+
 		end
 	end
 
@@ -47,6 +47,6 @@ module PagesHelper
 
 
 	  event.end_time.strftime('%H:%M')
-				
+
 	end
 end
