@@ -6,7 +6,8 @@ class EventsController < ApplicationController
     from_time = Time.parse(params[:from_time])
     to_time   = from_time + duration
 
-    flash[:notice] = "We have booked '#{room.name.humanize}' for you until #{from_time}"
+    Event.create(room, from_time, to_time, 'Adhoc meeting')
+    flash[:notice] = "We have booked '#{room.name.humanize}' for you until #{to_time}"
     redirect_to rooms_path
   end
 
