@@ -19,7 +19,6 @@ class Event
 
   def self.create(room, from_time, to_time, summary)
     result = Api.execute(create_query(room, from_time, to_time, summary))
-    binding.pry
     new(result.data)
   end
 
@@ -40,14 +39,15 @@ class Event
   def self.create_query(room, from_time, to_time, summary)
     {
       api_method: Api.calendar_api.events.insert,
-      parameters: { calendarId: room.id },
+      parameters: { calendarId: 'primary' },
+      headers: {'Content-Type' => 'application/json'},
       body: {
         summary: summary,
         location: room.name,
+        attendees: [{ email: room.id }],
         start: { dateTime: from_time.utc.iso8601 },
         end: { dateTime: to_time.utc.iso8601 },
       }.to_json,
-      headers: {'Content-Type' => 'application/json'}
     }
   end
 
