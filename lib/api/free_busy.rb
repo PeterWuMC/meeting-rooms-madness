@@ -38,7 +38,7 @@ class Api
 
       result = result.map do |id, hash|
         busy_hashes = hash['busy'].sort_by{|busy_slot| Time.zone.parse(busy_slot['start'])}
-        [id, convert_busy_to_free(hashes, start_time, end_time)]
+        [id, convert_busy_to_free(busy_hashes, start_time, end_time)]
       end
 
       result = result.reject{|_, free_hashes| free_hashes.empty?}
