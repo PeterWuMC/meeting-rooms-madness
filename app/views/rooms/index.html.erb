@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_2)} %>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_1)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_2} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_1} %>
     <td>
       Meetopia<br>
       V 0.1
@@ -12,17 +12,17 @@
 
   <tr>
     <td colspan=2></td>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:kingston)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :kingston} %>
   </tr>
 
   <tr>
     <td colspan=2></td>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:elbistan)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :elbistan} %>
   </tr>
 
   <tr>
     <td colspan=2></td>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:grimsby)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :grimsby} %>
   </tr>
 </table>
 
