@@ -6,18 +6,24 @@
       Meetopia<br>
       V 0.1
     </td>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:kingston)} %>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:elbistan)} %>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:grimsby)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :kingston} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :elbistan} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :grimsby} %>
   </tr>
 
   <tr>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_1)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_1} %>
     <td colspan=3></td>
   </tr>
 
   <tr>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_2)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_2} %>
     <td colspan=3></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :peter} %>
   </tr>
 </table>
