@@ -41,7 +41,5 @@ class AvailableRoomService
       start: first_eligible_slot[:start],
         end: first_eligible_slot[:start] + @duration
     }
-
   end
-
 end
