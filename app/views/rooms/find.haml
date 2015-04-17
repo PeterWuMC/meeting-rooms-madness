@@ -1,4 +1,6 @@
-%table
+%h1 Here is what we have found based on your search:
+
+%table{:class => "find"}
   - @rooms.each do |room, time_hash|
     %tr
       %td= room.name.humanize
