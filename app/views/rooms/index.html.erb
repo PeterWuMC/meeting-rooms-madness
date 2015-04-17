@@ -1,33 +1,51 @@
 <br>
 
+<h1>Reception Area</h1>
+
 <table>
-  <tr>
-    <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_2} %>
-    <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_1} %>
-    <td>
-      Meetopia<br>
-      V 0.1
-    </td>
-  </tr>
+
 
   <tr>
-    <td colspan=2></td>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_1} %>
+
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :customer_experience_2} %>
+
+    
+    <td></td>
+    <td></td>
+    <td> Sarah G</td>
+  </tr>
+
+
+
+
+  <tr>
+    <td class='tall', colspan=2></td>
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :kingston} %>
   </tr>
 
+
   <tr>
-    <td colspan=2></td>
+    <td class='tall', colspan=2></td>
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :elbistan} %>
   </tr>
 
   <tr>
-    <td colspan=2></td>
+    <td class='tall', colspan=2></td>
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :grimsby} %>
   </tr>
+
+
 </table>
 
 <table>
   <tr>
     <%= render partial: 'rooms/partials/room_cell', locals: {name: :test_room} %>
+  </tr>
+  <tr>
+    <td>
+      Meetopia<br>
+      V 0.1
+    </td>
   </tr>
 </table>
