@@ -1,21 +1,5 @@
 module RoomsHelper
 
-  def call_status_class(room_free)
-    if room_free
-      'free'
-    else
-      'busy'
-    end
-  end
-
-  def call_square(room_free)
-    if room_free
-      'free_square'
-    else
-      'busy_square'
-    end
-  end
-
   def call_td(room_free)
     if room_free
       'free_td'
@@ -24,29 +8,36 @@ module RoomsHelper
     end
   end
 
-  def current_event(room)
-    event = Event.all_of_today(room).detect do |event|
-          event.current?
-        end
-    return  if event.nil?
+  def current_event_summary(room)
+    event = current_event(room)
 
-    if !event.summary.present?
-
-      event.creator['email']
-    else
+    if event.nil?
+      'Cannot find event'
+    elsif event.summary.present?
       event.summary
-
+    elsif event.description.present?
+      event.description
+    else
+      event.creator['email']
     end
   end
 
   def current_event_end_time(room)
-    event = Event.all_of_today(room).detect do |event|
-          event.current?
-        end
-    return  if event.nil?
+    event = current_event(room)
+    return 'Cannot find event' if event.nil?
 
-
-    event.end_time.strftime('%H:%M')
-
+    end_time = event.end_time
+    if end_time > Time.new(Time.current.year, Time.current.month, Time.current.day, 17, 0, 0, '+00:00')
+      'end of the day'
+    else
+      event.end_time.strftime('%H:%M')
+    end
   end
+
+  private
+
+  def current_event(room)
+    event = Event.all_of_today(room).detect { |event| event.current? }
+  end
+
 end

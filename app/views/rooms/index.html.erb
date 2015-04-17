@@ -1,76 +1,23 @@
-<!DOCTYPE html>
-<html>
-
-	<head>
-	  <title>Meetopia</title>
-	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	  <%= csrf_meta_tags %>
-	</head>
-
-	<body>
-
-<!-- 		<h1>Welcome to the meeting rooms page</h1>
-
-		<p>Here is the current state of play with the meeting rooms:</p>
-		
-			<%- @rooms.each do |room, free|  %>
-		        <p class='<%=call_square(free) %>'_square>
-		          <%= room %>
-		          <%= room.name.capitalize %>,
-		          <%= current_event(room)%>,
-		          <%= current_event_end_time(room) %>
-		        </p>
-			<%- end %> -->
-
 <br>
 
 <table>
-			<tr>
-				<td>
-					Meetopia<br>
-					V 0.1
-				</td>
-				<td class='<%=call_td(Room.find_by_name(:kingston).is_free_now?) %>'>
-					Kingston<br>
-					<%= current_event(Room.find_by_name(:kingston)) %><br>
-					<%= current_event_end_time(Room.find_by_name(:kingston)) %>
-				</td>
-				<td class='<%=call_td(Room.find_by_name(:elbistan).is_free_now?) %>'>
-					Elbistan<br>
-					<%= current_event(Room.find_by_name(:elbistan)) %><br>
-					<%= current_event_end_time(Room.find_by_name(:elbistan)) %>
-				</td>
-				<td class='<%=call_td(Room.find_by_name(:grimsby).is_free_now?) %>'>
-					Grimsby<br>
-					<%= current_event(Room.find_by_name(:grimsby)) %><br>
-					<%= current_event_end_time(Room.find_by_name(:grimsby)) %>
-				</td>
-			</tr>
+  <tr>
+    <td>
+      Meetopia<br>
+      V 0.1
+    </td>
+    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:kingston)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:elbistan)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:grimsby)} %>
+  </tr>
 
-			<tr>
-				<td class='<%=call_td(Room.find_by_name(:customer_experience_1).is_free_now?) %>'>
-					Customer Exp1<br>
-					<%= current_event(Room.find_by_name(:customer_experience_1)) %><br>
-					<%= current_event_end_time(Room.find_by_name(:customer_experience_1)) %>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+  <tr>
+    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_1)} %>
+    <td colspan=3></td>
+  </tr>
 
-			<tr>
-				<td class='<%=call_td(Room.find_by_name(:customer_experience_2).is_free_now?) %>'>
-					Customer Exp2<br>
-					<%= current_event(Room.find_by_name(:customer_experience_2)) %><br>
-					<%= current_event_end_time(Room.find_by_name(:customer_experience_2)) %>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+  <tr>
+    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_2)} %>
+    <td colspan=3></td>
+  </tr>
 </table>
-
-	</body>
-
-</html>

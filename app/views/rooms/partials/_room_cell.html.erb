@@ -1,0 +1,9 @@
+<% room_is_free = room.is_free_now? %>
+
+<td class='<%= call_td(room_is_free) %>'>
+  <%= room.name.to_s.humanize %><br>
+  <%- unless room_is_free %>
+    <%= current_event_summary(room) %><br>
+    until <%= current_event_end_time(room) %>
+  <% end %>
+</td>
