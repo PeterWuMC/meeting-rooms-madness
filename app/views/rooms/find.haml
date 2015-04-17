@@ -1,9 +1,12 @@
-%h1 Here is what we have found based on your search:
 
-%table{:class => "find"}
-  - @rooms.each do |room, time_hash|
-    %tr
-      %td= room.name.humanize
-      %td= "From: #{l(time_hash[:start])}"
-      %td= "To: #{l(time_hash[:end])}"
-      %td= link_to 'Book it', room_events_path(room.name, duration: 1.hour, from_time: time_hash[:start], to_time: time_hash[:end]), :method=> :post
+- if @rooms.empty?
+  %h1 Sorry, no meeting rooms found for your search.
+- else
+  %h1 Here is what we have found based on your search:
+  %table{:class => "find"}
+    - @rooms.each do |room, time_hash|
+      %tr
+        %td= room.name.humanize
+        %td= "From: #{l(time_hash[:start])}"
+        %td= "To: #{l(time_hash[:end])}"
+        %td= link_to 'Book it', room_events_path(room.name, duration: 1.hour, from_time: time_hash[:start], to_time: time_hash[:end]), :method=> :post
