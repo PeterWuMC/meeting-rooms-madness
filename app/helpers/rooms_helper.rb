@@ -31,7 +31,8 @@ module RoomsHelper
     return 'Cannot find event' if event.nil?
 
     end_time = event.end_time
-    if end_time > Time.new(Time.current.year, Time.current.month, Time.current.day, 17, 0, 0, '+00:00')
+
+    if end_time > Time.zone.local(Time.current.year, Time.current.month, Time.current.day, 17)
       'end of the day'
     else
       l(event.end_time, format: :time_only)

@@ -65,11 +65,11 @@ class Event
   end
 
   def start_time
-    DateTime.parse(@raw_event_hash['start'].values.first)
+    Time.zone.parse(@raw_event_hash['start'].values.first)
   end
 
   def end_time
-    DateTime.parse(@raw_event_hash['end'].values.first)
+    Time.zone.parse(@raw_event_hash['end'].values.first)
   end
 
   def current?
