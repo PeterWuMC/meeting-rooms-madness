@@ -2,22 +2,27 @@
 
 <table>
   <tr>
+    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_2)} %>
+    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_1)} %>
     <td>
       Meetopia<br>
       V 0.1
     </td>
+  </tr>
+
+  <tr>
+    <td colspan=2></td>
     <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:kingston)} %>
+  </tr>
+
+  <tr>
+    <td colspan=2></td>
     <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:elbistan)} %>
+  </tr>
+
+  <tr>
+    <td colspan=2></td>
     <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:grimsby)} %>
   </tr>
 
-  <tr>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_1)} %>
-    <td colspan=3></td>
-  </tr>
-
-  <tr>
-    <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:customer_experience_2)} %>
-    <td colspan=3></td>
-  </tr>
 </table>
