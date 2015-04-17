@@ -3,8 +3,8 @@
 %td{class: call_td(room_is_free)}
   %h3= room.name.to_s.humanize
   - unless room_is_free
+    %p{style: 'font-size: 10px'}= current_event_summary(room)
     = "Busy until #{current_event_end_time(room)}"
-    = current_event_summary(room)
   - else
     %p Free
     %p
