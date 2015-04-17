@@ -11,13 +11,8 @@
   </tr>
 
   <tr>
-    <td class='tall', colspan=2></td>
-    <%= render partial: 'rooms/partials/room_cell', locals: {name: :kingston} %>
-  </tr>
-
-
-  <tr>
-    <td class='tall', colspan=2>
+    <%= render partial: 'rooms/partials/room_cell2', locals: {name: :kingston} %>
+    <td class='tall', colspan=1>
     Find me a room:<br>
     <%= form_tag(find_rooms_path, method: :post) do -%>
     <%= select_tag "date", options_for_select(find_room_dates_array(5)) %>
@@ -30,13 +25,19 @@
   <% end -%>
 
     </td>
-    <%= render partial: 'rooms/partials/room_cell', locals: {name: :elbistan} %>
+
+  </tr>
+
+
+  <tr>
+    <%= render partial: 'rooms/partials/room_cell2', locals: {name: :elbistan} %>
+    <td class='tall', colspan=1></td>
   </tr>
 
   <tr>
-    <td class='tall', colspan=2>
-    Rooms are layed out in the same way the look in the floorplan.
+    <%= render partial: 'rooms/partials/room_cell2', locals: {name: :grimsby} %>
+    <td class='tall', colspan=1>
+    Rooms are layed out in the same way they look in the floorplan.
     </td>
-    <%= render partial: 'rooms/partials/room_cell', locals: {name: :grimsby} %>
   </tr>
 </table>
