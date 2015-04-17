@@ -1,14 +1,14 @@
 <% room, room_is_free = find_room(name) %>
 
 <td class='<%= call_td(room_is_free) %>'>
-  <strong><%= room.name.to_s.humanize %></strong><br>
+  <h3><strong><%= room.name.to_s.humanize %></strong></h3><br>
   <% unless room_is_free %>
-    <%= current_event_summary(room) %><br>
-    until <%= current_event_end_time(room) %>
+    Busy until <%= current_event_end_time(room) %><br>
+  <%= current_event_summary(room) %>
   <% else %>
     Free<br>
-    Book room for the next:
-    <%= link_to '30 minutes', room_events_path(room.name, duration: 30.minutes, plan: 'adhoc'), :method=> :post %>
+    Book for the next:
+    <%= link_to '30 mins', room_events_path(room.name, duration: 30.minutes, plan: 'adhoc'), :method=> :post %>
     |
     <%= link_to '1 hour', room_events_path(room.name, duration: 1.hour, plan: 'adhoc'), :method=> :post %>
   <% end %>
