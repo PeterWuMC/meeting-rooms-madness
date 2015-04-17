@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #F2F2F2;
 $busy: #DC0030;
@@ -17,14 +16,12 @@ ul#menu li {
 }
 
 a {
-    color: #FF00FF;
-
+    color: blue;
 }
 
 a:hover {
     color: white;
 }
-
 
 body {
 	background-color: #535353;
@@ -56,21 +53,4 @@ background-color: $busy;
 
 .free_td {
 background-color: $free;
-}
-
-
-.busy_square {
-	width: 	300px;
-	height: 300px;
-	background: $busy;
-	text-align: center;
-	line-height: 300px;
-}
-
-.free_square {
-	width: 	300px;
-	height: 300px;
-	background: $free;
-	line-height: 300px;
-	text-align: center;
 }
