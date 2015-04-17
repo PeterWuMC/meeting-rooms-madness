@@ -1,4 +1,6 @@
 class Event
+  CURRENT = 5.minutes
+
   def self.all_of_today(room)
     all_between(room, Time.current, Time.current.end_of_day)
   end
@@ -8,14 +10,20 @@ class Event
     page_token = nil
 
     begin
-      result = Api.execute(query(room, from_time, to_time, page_token))
+      result = Api.execute(list_query(room, from_time, to_time, page_token))
       events += result.data.items
     end while page_token = result.data.next_page_token
 
     events.map{|event| new(event)}
   end
 
-  def self.query(room, from_time, to_time, page_token=nil)
+  def self.create(room, from_time, to_time, summary)
+    result = Api.execute(create_query(room, from_time, to_time, summary))
+    binding.pry
+    new(result.data)
+  end
+
+  def self.list_query(room, from_time, to_time, page_token=nil)
     {
       api_method: Api.calendar_api.events.list,
       parameters: {
@@ -29,7 +37,21 @@ class Event
     }.merge(page_token.nil? ? {} : {pageToken: page_token})
   end
 
-  private_class_method :query
+  def self.create_query(room, from_time, to_time, summary)
+    {
+      api_method: Api.calendar_api.events.insert,
+      parameters: { calendarId: room.id },
+      body: {
+        summary: summary,
+        location: room.name,
+        start: { dateTime: from_time.utc.iso8601 },
+        end: { dateTime: to_time.utc.iso8601 },
+      }.to_json,
+      headers: {'Content-Type' => 'application/json'}
+    }
+  end
+
+  private_class_method :list_query, :create_query
 
 
   def initialize(event)
@@ -51,7 +73,7 @@ class Event
   end
 
   def current?
-    Time.current >= start_time && Time.current < end_time
+    Time.current >= start_time - CURRENT && Time.current < end_time
   end
 
   def inspect

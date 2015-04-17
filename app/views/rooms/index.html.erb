@@ -24,5 +24,10 @@
     <td colspan=2></td>
     <%= render partial: 'rooms/partials/room_cell', locals: {room: Room.find_by_name(:grimsby)} %>
   </tr>
+</table>
 
+<table>
+  <tr>
+    <%= render partial: 'rooms/partials/room_cell', locals: {name: :test_room} %>
+  </tr>
 </table>

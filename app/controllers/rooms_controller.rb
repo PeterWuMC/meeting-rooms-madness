@@ -4,5 +4,4 @@ class RoomsController < ApplicationController
     @rooms = Room.all_free_now?
   end
 
-
 end
