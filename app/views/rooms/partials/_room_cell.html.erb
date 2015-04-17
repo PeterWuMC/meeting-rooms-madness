@@ -2,8 +2,10 @@
 
 <td class='<%= call_td(room_is_free) %>'>
   <%= room.name.to_s.humanize %><br>
-  <%- unless room_is_free %>
+  <% unless room_is_free %>
     <%= current_event_summary(room) %><br>
     until <%= current_event_end_time(room) %>
+  <% else %>
+    Book room here!
   <% end %>
 </td>
