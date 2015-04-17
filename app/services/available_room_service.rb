@@ -8,6 +8,23 @@ class AvailableRoomService
     new(from_time, to_time, projector: true).find
   end
 
+  def self.find_next_available_room_for(date, duration)
+    rooms = Api::FreeBusy.all_free_slots(Room.all, date)
+
+    rooms = rooms.select do |room_id, free_hashes|
+      free_hashes.any?{|free_hash| free_hash[:duration] >= duration}
+    end
+
+    rooms = rooms.map do |room_id, free_hashes|
+      room = Room.find_by_id(room_id)
+      eligible_slot = free_hashes.detect{|free_hash| free_hash[:duration] >= duration}
+      start_time = eligible_slot[:start]
+      end_time   = start_time + duration
+
+      [room, {start: start_time, end: end_time}]
+    end
+  end
+
   def initialize(from_time, to_time, additional_requirements={})
     @from_time = from_time
     @to_time   = to_time

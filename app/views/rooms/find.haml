@@ -1,0 +1,6 @@
+%table
+  - @rooms.each do |room, time_hash|
+    %tr
+      %td= room.name.humanize
+      %td= "From: #{l(time_hash[:start])}"
+      %td= "To: #{l(time_hash[:end])}"

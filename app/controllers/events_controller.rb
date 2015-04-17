@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     to_time   = from_time + duration
 
     event = Event.create(room, from_time, to_time, 'Adhoc meeting')
-    flash[:notice] = "We have booked '#{room.name.humanize}' for you until #{event.end_time}"
+    flash[:notice] = "We have booked '#{room.name.humanize}' for you until #{event.end_time.to_formatted_s(:short)}"
     redirect_to rooms_path
   end
 

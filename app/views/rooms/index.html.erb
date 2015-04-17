@@ -13,7 +13,7 @@
     
     <td></td>
     <td></td>
-    <td> Sarah G</td>
+    <td> Sarah G's seat</td>
   </tr>
 
 
@@ -49,3 +49,13 @@
     </td>
   </tr>
 </table>
+
+
+<p>
+  find me a room:
+  <%= form_tag(find_rooms_path, method: :post) do -%>
+    <%= select_tag "date", options_for_select(find_room_dates_array(5)) %>
+    <%= select_tag "duration", options_for_select(find_room_duration_array) %>
+    <%= submit_tag 'find' %>
+  <% end -%>
+</p>
