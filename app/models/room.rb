@@ -19,7 +19,7 @@ class Room
     all.detect { |room| room.id == id }
   end
 
-  def self.is_free_now?
+  def self.all_free_now?
     Api::FreeBusy.is_free_now?(all)
   end
 

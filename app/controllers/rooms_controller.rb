@@ -1,9 +1,8 @@
 class RoomsController < ApplicationController
 
-	def index
-	  @rooms = Room.is_free_now?
-
-	end
+  def index
+    @rooms = Room.all_free_now?
+  end
 
 
 end
