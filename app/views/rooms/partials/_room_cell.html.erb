@@ -6,6 +6,7 @@
     <%= current_event_summary(room) %><br>
     until <%= current_event_end_time(room) %>
   <% else %>
+    Free<br>
     Book room for the next:
     <%= link_to '30 minutes', room_events_path(room.name, duration: 30.minutes, from_time: Time.current), :method=> :post %>
     |
